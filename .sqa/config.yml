@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.2.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/mattiaBarbo/provaDocker1:
+      branch: main
+      repo: https://github.com/mattiaBarbo/provaDocker1.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-magnolia-affenpinscher.sh
+        container: qc.acc_cloudy-razzmatazz-flamingo
+  QC.Doc:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-dandelion-orangutan.sh
+        container: qc.doc_silly-aquamarine-dollar
+      github.com/mattiaBarbo/provaDocker1 git:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-eggplant-tortoise.sh
+        container: qc.doc_dorky-brown-scorpion
+      github.com/mattiaBarbo/provaDocker1 markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-coral-setter.sh
+        container: qc.doc_beady-tangerine-greyhound
+  QC.Lic:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-cerulean-eleuth.sh
+        container: qc.lic_snoopy-jade-woodpecker
+  QC.Sec:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-lime-mist.sh
+        container: qc.sec_scaly-wheat-bombay
+  QC.Sty:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-razzmatazz-wasp.sh
+        container: qc.sty_snippy-celadon-ocelot
+      github.com/mattiaBarbo/provaDocker1 hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-viridian-hummingbird.sh
+        container: qc.sty_sickly-mustard-woodlouse
+  QC.Uni:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 commands:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-eggplant-octopus.sh
+        container: qc.uni_lousy-sapphire-chameleon
+  QC.Ver:
+    repos:
+      github.com/mattiaBarbo/provaDocker1 get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-copper-tortoise.sh
+        container: qc.ver_hazy-tan-collie
+timeout: 5400
